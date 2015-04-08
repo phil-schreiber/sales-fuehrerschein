@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sales Führerschein</title>
+<link href="styles.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<script type="text/javascript" src="jquery-ui-1.10.3.custom.js"></script>
+<script type="text/javascript" src="https://script.ioam.de/iam.js"> </script>
+<script type="text/javascript">
+var currentQ;
+var maxQ;
+var questionData;
+var pointsAchieved=0;
+var maxPoints;
+var benchval=8;
+jQuery(document).ready(function(){
+ jQuery.ajax({
+                    url:"questions.json",
+                    dataType:"json",
+                    async:false,
+                    error:function(jqXHR,textStatus,errorThrown ){
+                            console.log("NOOOOO: "+textStatus+": "+errorThrown);
+                    },
+                    success:function(data,textStatus,jqXHR ){
+						questionData=data;
+						maxQ=questionData.questions.length;
+						currentQ=0;
+						maxPoints=questionData.maxpoints;
+                        runGame();
+                    }
+                    
+                    
+            });
+			jQuery('#submit').click(function(e){
+				e.preventDefault();
+				countPX();
+				savePoints();
+				currentQ++;
+				runGame();
+			});
+});
+
+var countPX=function(){
+	var img1 =document.createElement('img');
+	img1.src="http://de.sitestat.com/idgcom-de/channelpartner/s?salesfuehrerschein.p1&amp;li=0";
+	
+	var iam_data = { 
+"mg":"yes", // Migrationsmodus AKTIVIERT 
+"st":"compart", // site/domain 
+"cp":"salesfuehrerschein", // code 
+"oc":"salesfuehrerschein", // code SZM-System 1.5 
+"sv":"ke" // FRABO-Tag deaktiviert 
+} 
+iom.c(iam_data,2); 
+
+ 
+	
+}
+
+var savePoints=function(){
+	var answers=jQuery('.answer');
+
+	var collectedPoints=0;
+	for(var i=0; i<answers.length; i++){
+		var checker=jQuery(answers[i]).find(".checker");
+		var truefalse=jQuery(answers[i]).find(".truefalse");
+		if(parseInt(jQuery(checker).val())==1 && parseInt(jQuery(truefalse).val())==1){
+			collectedPoints++;
+		}else if(jQuery(answers[i]).val()==1 && !jQuery(answers[i]).is(':checked')){
+			collectedPoints=0;
+		}
+	}
+	pointsAchieved=pointsAchieved+collectedPoints;
+};
+
+var runGame=function(){
+	jQuery('#qtext').empty();
+	jQuery('#awrapper').empty();
+	jQuery('#qnumber').html(currentQ+1);
+	jQuery('#indicator').width((currentQ+1)*55);
+	if(currentQ==1){
+		jQuery('#intro').hide();
+		jQuery('#header').css({"position":"static","background":"url(icons_unterseite_1.png) no-repeat top left","height":"193px"});
+		jQuery('#header h2').removeClass('hidden');
+	}
+	
+	if(currentQ < maxQ){
+		var qData=questionData.questions[currentQ];
+		jQuery('#qtext').html(qData.question);
+		var answers=qData.answers;
+		var truefalse=0;
+		var mode="checkbox";
+		var name="answer[]";
+		jQuery('#qmode').val(qData.mode);
+		/*if(qData.mode==1){
+			mode="checkbox";
+		}*/
+		for(var i=0;i<answers.length; i++){
+			if(qData.mode==1){
+				name="answer_"+i;
+			}			
+			if(answers[i].truefalse=='true'){
+				truefalse=1;
+			}else{
+				truefalse=0;
+			}
+			jQuery('#awrapper').append('<div class="answer"><div class="checkbox"></div><input type="hidden" class="checker" value="0"><input type="hidden" class="truefalse" value="'+truefalse+'"><div class="atext">'+answers[i].text+'</div></div><div class="clearer"></div>');
+		}
+		jQuery('.answer').click(function(e){
+			if(qData.mode==0){
+				jQuery('.checkbox').removeClass('checked');
+				var checkbox=jQuery(this).find(".checkbox");
+				var checker=jQuery(this).find(".checker");
+				jQuery(checker).val(1);
+				jQuery(checkbox).addClass('checked');
+			}else{
+				var checkbox=jQuery(this).find(".checkbox");
+				var checker=jQuery(this).find(".checker");
+
+				if(parseInt(jQuery(checker).val())==1){
+					jQuery(checker).val(0);
+					jQuery(checkbox).removeClass('checked');
+				}else{
+					jQuery(checker).val(1);
+					jQuery(checkbox).addClass('checked');
+				}
+				
+			
+			}
+		});
+	}else{
+		endGame();
+	}
+		
+
+};
+
+var endGame=function(){
+	var url="http://selfservice.denkfabrik-group.com/index.php?id=1&eID=gameBench";
+
+	jQuery.ajax({
+			url: url,
+			cache: false,
+			data: { gameid: "1", result: pointsAchieved },   
+			type: 'POST',
+			success: function(data) {
+					benchval=parseFloat(data);
+					var percent=Math.round(((benchval*100)/maxPoints));
+					jQuery('#bench').html(percent);
+
+
+					if(benchval > (maxPoints/2)){		
+						jQuery('#bench').css({"color":"#5b8d3d"});
+						
+
+					}else{
+						jQuery('#bench').css({"color":"#d01624"});
+						
+					}
+								
+			},
+			error: function(e){
+				console.log('Es ist ein Problem aufgetreten: '+e);
+			}
+		});
+	
+	jQuery('#again').click(function(e){
+		e.preventDefault();
+		location.reload();
+	});
+	
+	jQuery('#qwrapper').fadeOut('fast');
+	jQuery('#rwrapper').fadeIn('fast');
+	var percent=Math.round(((pointsAchieved*100)/maxPoints));
+	jQuery('#resultPoints').html(percent);
+	if(pointsAchieved > (maxPoints/2)){
+		jQuery('#pointer').css({"left": "155px"});
+		jQuery('#resultPoints').css({"color":"#5b8d3d"});
+		jQuery('#postit').css({"background":"url(postit_geschafft.png) no-repeat top left"});
+		jQuery('#rPointerWrapper').css({"background":"url(result_button_pass.jpg) no-repeat top left"});
+	}else{
+		jQuery('#pointer').css({"left": "530px"});
+		jQuery('#resultPoints').css({"color":"#d01624"});
+		jQuery('#postit').css({"background":"url(postit_nicht_geschafft.png) no-repeat top left"});
+		jQuery('#rPointerWrapper').css({"background":"url(result_button_fail.jpg) no-repeat top left"});
+	}
+	jQuery('#postit').removeClass("hidden");
+	
+	 
+	
+
+
+};
+</script>
+<script type="text/javascript">var switchTo5x=false;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "f6feccd0-8c01-4798-b3fc-8fc790bb09e7", doNotHash: false, doNotCopy: false, hashAddressBar: false });</script>
+
+</head>
+
+<body>
+<div id="game-wrapper">
+	<div id="header">    	<h2 class="hidden">Sales Führerschein</h2>    </div>
+<div id="intro">
+    	<h1>Sales Führerschein</h1>
+        <div id="introtext">
+        <div class="left">
+        <p>Wie fit sind Sie im Vertrieb? Testen Sie sich einmal ganz schnell und erwerben Sie den Sales-Führerschein von ChannelPartner. 	<br>Es können mehrere Antworten richtig sein. </p>
+        </div>
+        <div class="right">
+        <p>Mit dem letzten Mausklick erfahren Sie automatisch Ihr Ergebnis und können sich gleichzeitig mit den Resultaten der anderen Teilnehmer vergleichen. </p>
+        </div>
+        <div class="clearer"></div>
+        </div>
+    </div>
+    <div id="qwrapper">
+    	<div class="qcounter">Frage <span id="qnumber"></span> von 12</div>
+    	<div id="qtext" class="qtext">        </div>
+
+        	<div id="awrapper">            </div>
+<br>
+<br>
+
+            <div class="submit-wrapper">
+        	<input type="submit" value="Weiter" id="submit">
+            </div>
+			<input type="hidden" value="0" id="qmode">
+            <div id="indicatorWrapper"><div id="indicator"></div></div>
+	<div class="clearer"></div>
+    </div>
+    <div id="rwrapper" class="hidden">
+        	<div class="qcounter">Auswertung</div>
+            <div id="rtext" class="qtext">Sie haben mit <span id="resultPoints"></span> % den Sales-Führerschein         </div>
+            <div id="rPointerWrapper"><div id="pointer"></div></div>
+<br>
+<br>
+
+            <div class="bench">
+            	<p>Die anderen Teilnehmer erreichten durchschnittlich den Wert von <span id="bench"></span> %</p>
+            </div>
+            <br>
+<br>
+
+                        <div class="submit-wrapper">
+        	<input type="submit" value="Nochmal" id="again">
+            </div><div>
+            	<br>
+            	
+<span class='st_facebook_large' id="button_1" displayText='Facebook'></span>
+<span class='st_twitter_large' id="button_2" displayText='Tweet'></span>
+<span class='st_linkedin_large' id="button_3" displayText='LinkedIn'></span>
+<span class='st_xing_large' id="button_4" displayText='Xing'></span>
+
+            	<br>
+            	
+            </div>
+
+            	<div class="clearer"></div>
+    </div>
+    <div id="postit" class="hidden"></div>
+</div>
+
+</body>
+</html>

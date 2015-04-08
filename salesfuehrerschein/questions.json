@@ -1,0 +1,249 @@
+{
+    "questions": [
+        {
+            "question": "Was verstehen Sie unter den „roten Knöpfen“ beim Kunden?",
+            "answers": [
+                {
+                    "text": "die persönlichen Alarmsignale, warum er sich gegen einen Kauf entscheiden soll",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "seine „Nice-to-have“-Wünsche",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "alle relevanten Aspekte seiner Kaufentscheidung",
+                    "truefalse": "true"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+        {
+            "question": "Wie wird im Vertriebsgespräch eine Vertrauensebene zum Kunden aufgebaut?",
+            "answers": [
+                {
+                    "text": "die eigene Tonlage und Lautstärke der Sprechweise des Kunden unterordnen",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "durch den Mut, die eigene Persönlichkeit deutlich zu machen und als eine unverwechselbare Marke zu erscheinen",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "die eigenen Aussagen auf die Argumentationen des Kunden ausrichten",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "auf eine sehr kumpelhafte Art dem Gespräch eine persönliche Ebene verleihen",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":1,
+			"points":2
+        },
+		{
+            "question": "In welchen Abfolgen reagiert der Kunde im Vertriebsgespräch?",
+            "answers": [
+                {
+                    "text": "erst wirken die Emotionen, dann die Argumente",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "erst entstehen bei ihm sachliche Überlegungen, dann reagiert er emotional",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "ein ständiges Hin und Her von sachlichen und emotionalen Reaktionen",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+		{
+            "question": "Was muss in einer frühen Phase des Sales-Kontakts beim Kunden unbedingt ermittelt werden, um das Gespräch vertriebsorientiert steuern zu können?",
+            "answers": [
+                {
+                    "text": "ob er über den Preis verhandeln will",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "seine Vorerfahrungen, Ziele und Entscheidungszwänge",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "wie sein soziales Umfeld auf die Kaufentscheidung reagieren wird",
+                    "truefalse": "false"
+                },
+				{
+                    "text": "welche Meinung er zu Konkurrenzprodukten hat",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+		{
+            "question": "Welche Schlüsselaktivität prägt den Vertriebsprozess? ",
+            "answers": [
+                {
+                    "text": "ein gutes Vertrauensverhältnis erzeugen",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "interessante Preisperspektiven eröffnen",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "das Kundenproblem lösen",
+                    "truefalse": "true"
+                },
+				{
+                    "text": "für eine gute Stimmung sorgen",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+		{
+            "question": "Wie führen Sie den Kunden durch das Gespräch?",
+            "answers": [
+                {
+                    "text": "durch zielführende Fragen",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "durch eine dominante Gesprächsführung",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "indem der Kunde immer wieder zu Teilentscheidungen aufgefordert wird",
+                    "truefalse": "true"
+                }
+            ],
+			"mode":1,
+			"points":2
+        },
+		{
+            "question": "Wie sollten Sie kommunizieren?",
+            "answers": [
+                {
+                    "text": "betont sachlich, um die überzeugende Kraft von Zahlen und Fakten zu nutzen",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "mit bildhafter Sprache und positiven Assoziationen",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "emotionale Ansprache und viel Einsatz von Körpersprache",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+        {
+            "question": "Was müssen Sie über Konkurrenzprodukte wissen?",
+            "answers": [
+                {
+                    "text": "wenig, weil ich die Besonderheit des eigenen Produkts zur Wirkung bringen muss",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "viel, damit ich nicht gegenüber dem Kunden unwissend wirke",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "möglichst alles, um die Vorteilsargumentationen gegenüber den anderen Produkten umfassend herausarbeiten zu können",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+        {
+            "question": "Was verstehen Sie unter „Köder- und Haken-Produkte“?",
+            "answers": [
+                {
+                    "text": "preisaggressive Angebote zum Ködern der Kunden",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "das eigentliche Geschäft wird mit dem Verkauf von Folgeprodukten/–dienstleistungen gemacht",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "Produkte mit langen Vertragspflichten",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":0,
+			"points":1
+        },
+        {
+            "question": "In welchem Umfang sollte dem Kaufinteressenten Info-Material zur Verfügung gestellt werden?",
+            "answers": [
+                {
+                    "text": "so umfangreich wie möglich, damit möglichst viele Informationswünsche befriedigt werden",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "das Info-Material auf wichtige Unterlagen beschränken",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "vom Detailinteresse des Kaufinteressierten abhängig machen",
+                    "truefalse": "true"
+                }
+            ],
+			"mode":1,
+			"points":2
+        },
+        {
+            "question": "Was ist in der telefonischen Kalt-Akquise wichtig?",
+            "answers": [
+                {
+                    "text": "eine klare Story im Kopf vorbereiten und sich den 1. Satz genau überlegen",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "einen Gesprächsleitfaden vorbereiten",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "sofort mit starken Nutzenargumenten begeistern",
+                    "truefalse": "false"
+                }
+            ],
+			"mode":1,
+			"points":2
+        },
+        {
+            "question": "Worauf kommt es beim vertrieblichen Networking an?",
+            "answers": [
+                {
+                    "text": "zurückhaltend auf die Ansprache der anderen warten, das verbessert die eigene Position",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "den Networking-Partnern immer aufmerksam zuhören",
+                    "truefalse": "true"
+                },
+                {
+                    "text": "durch authentisches und wertschätzendes Verhalten überzeugen",
+                    "truefalse": "false"
+                },
+                {
+                    "text": "nie vergessen, die eigenen Stärken deutlich machen",
+                    "truefalse": "true"
+                }
+            ],
+			"mode":1,
+			"points":2
+        }
+    ],
+	"maxpoints": 17
+}
